@@ -1,0 +1,103 @@
+Harjoitustyö - Tehtävänanto
+Henkilökohtaisessa harjoitustyössä pääset soveltamaan käytännössä opintojaksolla opittuja tekniikoita ja rakennat samalla työnäytteen.
+
+Tehtävänanto 
+Tee sovellus, jolla voit ylläpitää jotakin sinulle mielenkiintoista tietoa kuten elokuvat, musiikki, urheilu, tilaukset, 
+.... Ylläpitoliittymään pääsee ainoastaan sisäänkirjautunut, mutta tiedon katselunäkymään pääsee tarkastelemaan kuka tahansa sisäänkirjautumaton vierailija.
+Pyri tekemään katselunäkymä sellaiseksi, että se näyttää desktopilla, tabletilla, kännykällä ja printterillä tulostettuna erilaisilta. 
+Suunnittele ja rakenna sovellustasi varten tietokanta.
+
+Toteuta sovellus käyttäen seuraavista tekniikoista ainakin yhdeksää (9) tekniikkaa :
+01. MariaDB........... -ok                                       -
+02. Spring JDBC....... -okish                                    -
+03. Spring Web MVC.... -okish                                    -
+04. Spring Security... (?)                                       -on
+05. Bean Validation... (auto??)                                  -
+06. I18n.............. Suomi-Englanti                            -
+07. REST.............. -okish (digesting results meaningfully?)  -on
+08. JSON.............. -ok                                       -on
+09. Jackson........... -ok (ajax-json-rest)                      -on
+10. HTML5............. -okish                                    -on
+11. CSS............... -ok grid, flexbox                         -on
+12. JavaScript........ -ok (ajax)                                -on
+13. JQuery............ -ok                                       -
+14. AJAX.............. -ok                                       -on
+                                                                  8
+Minähän sotken tähän mukaan Angularia, kun en ole sitä ennen tehnyt
+https://spring.io/guides/tutorials/spring-security-and-angular-js/
+
+Ja REST rajapintaa käytän myös angularilla, ja se täältä
+https://spring.io/guides/gs/consuming-rest-angularjs/
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+22.02.2018
+Toteutus suunnitelma:
+https://developer.okta.com/blog/2017/04/26/bootiful-development-with-spring-boot-and-angular
+
+-todo applikaatio joka on tarkoitus lopulta laittaa omalle sivustolle circumborealis.fi
+To simplify development and deployment, you want everything in the same artifact, so you put your Angular app “inside” your Spring Boot app, right? 
+But what if you could create your Angular app as a standalone app and make cross-origin requests to your API? Hey guess what, you can do both!
+
+I believe that most frontend developers are used to having their apps standalone and making cross-origin requests to APIs. 
+The beauty of having a client app that can point to a server app is you can point it to any server and it makes it easy to test your current client code against other servers 
+(e.g. test, staging, production).
+
+This post shows how you can have the best of both worlds where the UI and the API are separate apps. 
+You’ll learn how to create REST endpoints with Spring Data REST, configure Spring Boot to allow CORS, and create an Angular app to display its data. 
+This app will display a list of beers from the API, then fetch a GIF from https://giphy.com/ that matches the beer’s name.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+23.03.2018
+Projektin tarkoitus on muuttunut siten että nyt tehdään vain spring sovellus. (Angularia ei tule mukaan)
+Koodisnippien tallennus ohjelma.
+<!-- p=pending d=done r=removed
+
+	p-kikkailun lopetus ja tehtävän tekeminen valmiiksi
+	p-tehtävän osien riittämisen kartoitus (8)
+	
+	
+	
+	d-käytettyjen spring teknologioiden parempi implementointi
+	d-WebSecurityConfig asetukset
+	d-layout your snips page
+	d-layout edit snip page
+	d-layout new snip page
+	d-layout reveal snip modal
+	d-layout login page
+	d-newsnip sivun css parempaan kuntoon
+	d-css siivous
+	d-CSRF disabloinnin takaisin päälle kytkentä
+	d-yoursnips sivulla snippien sijoittelun hallinta kun ne luodaan for eachillä gridiin (if jotain, insert filler square??)
+	d-delete toiminto suoraan squareen
+	d-edit toiminto suoraan squareen
+	r-tee modalin buttoneille form wrapperit?
+	d-time tallennettaessa koodillisesti
+	d-tallennettaeussa 'owner' pitäisi saada tutkittua. Selvitä mistä saa tiedon ownerista koodilla newsnip sivulla.
+	d-newsnip sivun turhan röynän poisto
+	d-yoursnips sivun turhan röynän poisto
+	d-newsnip sivujen javascriptin siivous
+	d-yoursnips sivujen javascriptin siivous
+	d-jatka sivulta yoursnips kohdasta dynamic links
+	d-yoursnips sivun linkit omiin snippeihin
+	d-oman snipin katselusivu
+	d-omien snippien katselu
+	r-refaktoroi koko index.html ajax pipeline toimimaan geneerisillä data objekteilla 
+	r-keksin luominen kirjautumisen yhteydessä
+	r-userin kuljettaminen keksissä
+	d-sniplibrary sivulle mentäessä, mukaan lista omista snipeistä
+	d-textAreaan scroll barit liian isolle textille
+	d-suurenna pasteArea oikean kokoiseksi
+	d-back codeSnip ajax Post tallennus
+	d-back codeSnip vastaanotto
+	d-tee ajax post, joka vie eteenpäin koodin, kielen, detailsit ja ajan.
+	d-textareaan voi kirjoittaa ja pasteta ja napista se menee eteenpäin
+	d-avaa modal joka kysyy textiin sopivan otsikon
+	d-tee modaliin napit general ja java
+	d-tee backkiin luokka koodille
+ -->
+   Huomioi käyttäjätiedon kanssa:
+   --> 1. kun tieto tallennetaan tietokantaan, tulee se ainakin html escapata
+   -->    (1b. muitakin escapeja pitäisi ehkä ottaa huomioon, mutten tiedä mitä, enkä siis keskity niihin)
+   --> 2. kun tieto haetaan tietokannasta takaisin sivulle, tulee se unescapata oikeassa vaiheessa, siten ettei koodi pääse suorittamaan.
+ 
+ 

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Your snips</title>
+<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{css/main.css}" />
+</head>
+<body>
+	<div class="page-container">
+		<div class="grid-container">
+			<div class="grid">
+				<div class="grid-square-button grid-div" id="goto-newsnip">
+					<a th:href="@{/newsnip}" class="a-grid-size-button">Go to save a snip</a>
+				</div>
+				<div class="grid-square-button grid-div" id="logout">
+					<a th:href="@{/logout}" class="a-grid-size-button">Log out</a>
+				</div>
+				<div id="filler-div-1"></div>
+				<div id="filler-div-2"></div>
+				<div id="filler-div-3"></div>
+				<div id="filler-div-4"></div>
+				<div id="filler-div-5"></div>
+				<div id="filler-div-6"></div>
+				<div id="filler-div-7"></div>
+				<div id="filler-div-8"></div>
+				<div id="filler-div-9"></div>
+				<div id="filler-div-11"></div>
+				<div id="filler-div-12"></div>
+				<div id="filler-div-13"></div>
+				<div id="filler-div-14"></div>
+				<div th:each="codesnip : ${codesnips}" class="snip-div grid-div">
+					<div class="snip-div-spacer">
+						<div th:text="${codesnip.language}" class="snip-div-language"></div>
+						<div th:text="${codesnip.details}" class="snip-div-details"></div>
+						<div th:text="${codesnip.code}" class="snip-div-code hidden"></div>
+						<div th:text="${codesnip.time}" class="snip-div-time hidden"></div>
+						<div th:text="${codesnip.id}" class="snip-div-id hidden"></div>
+					</div>
+					
+					<button onClick="showSnipModal(this)" class="button">reveal</button>
+					<div class="snip-command-button">
+						<a th:href="@{/editsnip/{id}(id=${codesnip.id})}">edit</a>
+						<a th:href="@{/deletesnip/{id}(id=${codesnip.id})}">delete</a>
+					</div>
+				</div>
+			</div> <!-- /class="grid" -->
+		</div> <!-- /class="grid-container" -->
+	</div> <!-- /class="page-container" -->
+	
+	<div class="modal" id="modal-show-full-snip">
+		<div class="full-snip-modal-left">
+			<div class="full-snip-modal-left-top">
+				<textarea class="modal-textarea" id="modal-details">Details here</textarea>
+			</div>
+			<div class="full-snip-modal-left-bottom">
+				<textarea class="modal-textarea" id="modal-code">Code here</textarea>
+			</div>
+		</div>
+		<div class="full-snip-modal-right">
+			<div class="full-snip-modal-right-first">
+				<div id="modal-time-indicator">D/M/Y</div>
+			</div>
+			<div class="full-snip-modal-right-top">
+				<div id="modal-time">Time here</div>
+			</div>
+			<div class="full-snip-modal-right-middle">
+				<div id="modal-language">Language here</div>
+			</div>
+			<div class="full-snip-modal-right-bottom">
+				<button id="hide-modal-button" class="button" onclick="hideSnipModal()">close</button>
+			</div>
+		</div>
+	</div> <!-- /class="modal" -->
+	
+</body>
+</html>
+
+<script>
+function getDate(milliseconds){
+	var date ="";
+	
+	return date;
+}
+
+function showSnipModal(elem){
+	var parent = elem.parentNode.firstElementChild;
+	var language = parent.firstElementChild;
+	var details = language.nextElementSibling;
+	var code = details.nextElementSibling;
+	var time = code.nextElementSibling;
+	var id = time.nextElementSibling;
+	var toBeRemovedId = id.innerHTML;
+	
+	var date = new Date(parseInt(time.innerHTML));
+	var d = parseInt(date.getDate());
+	var m = parseInt((date.getMonth() + 1));
+	var y = date.getFullYear();
+	d = (10 > d) ? ("0" + d).slice(-2) : d;
+	m = (10 > m) ? ("0" + m).slice(-2) : m;
+	var dateSaved = d + "." + m + "." + y;
+	
+	var modal = document.getElementById("modal-show-full-snip");
+	document.getElementById("modal-language").innerHTML = language.innerHTML;
+	document.getElementById("modal-details").innerHTML = details.innerHTML;
+	document.getElementById("modal-code").innerHTML = code.innerHTML;
+	document.getElementById("modal-time").innerHTML = dateSaved;
+
+	modal.style.display = "block";
+}
+
+function hideSnipModal(){
+	var modal = document.getElementById("modal-show-full-snip");
+	modal.style.display = "none";
+}
+function saveAndHideSnipModal(){
+	hideSnipModal();
+}
+function removeAndHideSnipModal(){
+	hideSnipModal();
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

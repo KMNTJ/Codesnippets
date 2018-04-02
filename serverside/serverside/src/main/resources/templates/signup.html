@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add student</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{css/main.css}" />
+</head>
+<body>
+	<div class="page-container">
+		<div class="sign-up-container">
+		<div class="sign-up-context">
+			<div class="sign-up-text"><h1>Sign-up</h1></div>
+			<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
+				<div class="sign-up-row" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"><span class="sign-up-row-span"></span><p>Username Error</p></div>	
+				<div class="sign-up-row">
+					<span class="sign-up-row-span"><label th:for="username">Username</label></span><input type="text" th:field="*{username}"/>
+				</div>
+				<div class="sign-up-row" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"><span class="sign-up-row-span"></span><p>Password Error</p></div>	
+				<div class="sign-up-row">
+					<span class="sign-up-row-span"><label th:for="password">Password</label></span><input type="password" th:field="*{password}"/>
+				</div>
+				<div class="sign-up-row" th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"><span class="sign-up-row-span"></span><p>Password Match Error</p></div>	
+				<div class="sign-up-row">
+					<span class="sign-up-row-span"><label th:for="passwordCheck">Re-type Password</label></span><input type="password" th:field="*{passwordCheck}"/>
+				</div>
+				<div class="sign-up-row">
+					<input class="sign-up-row-input" type="submit" value="Signup"></input>		
+				</div>
+			</form>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

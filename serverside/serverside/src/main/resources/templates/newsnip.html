@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<div class="page-container">
+	<div class="grid">
+		<div class="grid-square-button grid-div" id="goto-snip-library">
+			<a th:href="@{/yoursnips}" class="a-grid-size-button">Go to yoursnips</a>
+		</div>
+		<div class="grid-square-button grid-div" id="logout">
+			<a th:href="@{/logout}" class="a-grid-size-button">Log out</a>
+		</div>
+		<div class="form-holder grid-div">
+			<form th:object="${CodeSnip}" th:action="@{/savesnip}" action="#" method="post">
+				<div class="details-container">
+					<div><label  class="label" for="code-details">Code description: </label></div>
+					<textarea class="textarea" id="code-details" th:field="*{details}">What is this code? Why to remember this?</textarea>
+				</div>
+				<div class="code-container">
+					<div><label class="label" for="paste-area">Insert code here: </label></div>
+					<textarea class="textarea"  id="paste-area" th:field="*{code}">- Paste code here -</textarea>
+				</div>
+				<div class="label-container">
+					<div><label class="label" for="language">Language: </label></div>
+					<input class="input-field" type="text" id="language" th:field="*{language}"/>
+				</div>
+				<div>
+					<button class="button" type="submit" value="Save">submit</button>
+				</div> 
+			</form>                  
+		</div>
+	</div> <!-- /class="grid" -->
+	</div> <!-- /class="page-container" -->
+	</body>
+</html>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

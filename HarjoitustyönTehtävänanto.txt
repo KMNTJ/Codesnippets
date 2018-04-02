@@ -1,0 +1,40 @@
+Harjoitustyö - Tehtävänanto
+Henkilökohtaisessa harjoitustyössä pääset soveltamaan käytännössä opintojaksolla opittuja tekniikoita ja rakennat samalla työnäytteen.
+
+Tehtävänanto 
+Tee sovellus, jolla voit ylläpitää jotakin sinulle mielenkiintoista tietoa kuten elokuvat, musiikki, urheilu, tilaukset, .... Ylläpitoliittymään pääsee ainoastaan sisäänkirjautunut, mutta tiedon katselunäkymään pääsee tarkastelemaan kuka tahansa sisäänkirjautumaton vierailija. Pyri tekemään katselunäkymä sellaiseksi, että se näyttää desktopilla, tabletilla, kännykällä ja printterillä tulostettuna erilaisilta. Suunnittele ja rakenna sovellustasi varten tietokanta.
+
+Toteuta sovellus käyttäen seuraavista tekniikoista ainakin yhdeksää (9) tekniikkaa :
+MariaDB........... -ok                                       -
+Spring JDBC....... -okish                                    -
+Spring Web MVC.... -okish                                    -
+Spring Security... (?)                                       -on
+Bean Validation... (auto??)                                  -
+I18n.............. Suomi-Englanti                            -
+REST.............. -okish (digesting results meaningfully?)  -on
+JSON.............. -ok                                       -on
+Jackson........... -ok (ajax-json-rest)                      -on
+HTML5............. -okish                                    -on
+CSS............... -ok grid, flexbox                         -on
+JavaScript........ -ok (ajax)                                -on
+JQuery............ -ok                                       -
+AJAX.............. -ok                                       -on
+
+
+Minähän sotken tähän mukaan Angularia, kun en ole sitä ennen tehnyt
+https://spring.io/guides/tutorials/spring-security-and-angular-js/
+
+Ja REST rajapintaa käytän myös angularilla, ja se täältä
+https://spring.io/guides/gs/consuming-rest-angularjs/
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+22.02.2018
+Toteutus suunnitelma:
+https://developer.okta.com/blog/2017/04/26/bootiful-development-with-spring-boot-and-angular
+
+-todo applikaatio joka on tarkoitus lopulta laittaa omalle sivustolle circumborealis.fi
+To simplify development and deployment, you want everything in the same artifact, so you put your Angular app “inside” your Spring Boot app, right? But what if you could create your Angular app as a standalone app and make cross-origin requests to your API? Hey guess what, you can do both!
+
+I believe that most frontend developers are used to having their apps standalone and making cross-origin requests to APIs. The beauty of having a client app that can point to a server app is you can point it to any server and it makes it easy to test your current client code against other servers (e.g. test, staging, production).
+
+This post shows how you can have the best of both worlds where the UI and the API are separate apps. You’ll learn how to create REST endpoints with Spring Data REST, configure Spring Boot to allow CORS, and create an Angular app to display its data. This app will display a list of beers from the API, then fetch a GIF from https://giphy.com/ that matches the beer’s name.

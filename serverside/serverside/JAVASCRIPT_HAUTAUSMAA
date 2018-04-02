@@ -1,0 +1,112 @@
+var language = "";
+
+function showResponseMessage(currentMessage){
+	var msg = currentMessage;
+	document.getElementById("responseMessage").innerHTML = msg.text;
+	var message = document.getElementById("message");
+	message.style.display = "block";
+	hideModal();
+	setTimeout(hideMessage, 3000);
+}
+
+function hideMessage(){
+	this.message.style.display = "none";
+}
+function hideModal(){
+	var modal = document.getElementById("code-details-modal");
+	modal.style.display = "none";
+}
+
+function grabCode(){
+	var code = document.getElementById("paste-area").value;
+	var modal = document.getElementById("code-details-modal");
+    language = "General";	
+	document.getElementById("target").innerHTML = code;
+	modal.style.display = "block";
+}
+
+function cancelSaveCode(){
+	var modal = document.getElementById("code-details-modal");
+	modal.style.display = "none";	
+}
+
+function changeLanguage(s){
+	language = s;
+}
+
+function saveCode(){
+	var details = document.getElementById("code-details").value;
+	var code = document.getElementById("paste-area").value;
+	var lang = language;
+	var timeStamp = Date.now();
+	ajaxPost(details, code, lang, timeStamp);
+}
+
+// An ajax function like this should be a general type function. 
+// This kind of implementation results in code repetition.
+function ajaxPost(a, b, c, d){
+	var xhttp;
+	var data = {owner:"u",
+				details:"", 
+			 	code:"", 
+			 	language:"", 
+			 	time:""
+			 	};
+	data.details = a;
+	data.code = b;
+	data.language = c;
+	data.time = d;
+	xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "saveSnippet", true);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send(JSON.stringify(data));
+	xhttp.onreadystatechange = function() {
+		if (this.status == 200){
+			if (this.readyState == 4){
+				var json = JSON.parse(xhttp.responseText);
+			    console.log(json);
+			    showResponseMessage(json);
+			}
+		}
+	};
+};
+
+function ajaxResponse(url, cFunction){
+	var xhttp;
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.status == 200){
+			if (this.readyState == 4){
+				cFunction(this);
+			}
+		}
+	};
+	xhttp.open("GET", url, true);
+	xhttp.send();
+	
+}
+
+function ajaxTest(xhttp){
+	document.getElementById("receiver").innerHTML = xhttp.responseText;
+}
+
+
+document.body.onload = addElement;
+function addElement(){ 
+  var newDiv = document.createElement("div"); 
+  var newContent = document.createTextNode("Hi there and greetings!"); 
+  newDiv.appendChild(newContent);  
+
+  var currentDiv = document.getElementById("test-target"); 
+  
+  document.getElementById("test-target").appendChild(newDiv); 
+}
+
+function insertItem(){ 
+  var newDiv = document.createElement("div"); 
+  var newContent = document.createTextNode("Hi there and greetings!"); 
+  newDiv.appendChild(newContent);  
+
+  var currentDiv = document.getElementById("test-target"); 
+  document.getElementById("test-target").appendChild(newDiv); 
+}
